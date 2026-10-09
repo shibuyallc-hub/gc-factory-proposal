@@ -1,0 +1,1225 @@
+<!DOCTYPE html>
+<html lang="ja"><head><meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>承継院長ナビ — M&amp;A承継クリニック専門</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700&amp;family=Noto+Serif+JP:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0B1D3A;--navy-light:#152B4F;--navy-soft:#1E3A5F;
+  --teal:#0A7B6B;--teal-light:#0D9B87;--teal-bg:#E8F6F3;--teal-pale:#F2FAF8;
+  --gold:#B8860B;--gold-light:#D4A017;--gold-bg:#FDF6E3;
+  --white:#FFFFFF;--off-white:#FAFAF8;--cream:#F5F3EE;
+  --gray-50:#F9F9F7;--gray-100:#F0EDE8;--gray-200:#E0DBD2;--gray-300:#C8C1B5;
+  --gray-400:#A09888;--gray-500:#7A7265;--gray-600:#5C554A;--gray-700:#3D3831;--gray-800:#1F1C18;
+  --red:#C0392B;--red-bg:#FDF0EE;
+  --blue:#2471A3;--blue-bg:#EBF5FB;
+  --font-display:"Noto Serif JP",serif;
+  --font-body:"Noto Sans JP",sans-serif;
+  --max-w:960px;--content-w:680px;
+  --shadow-sm:0 1px 3px rgba(11,29,58,.06);
+  --shadow-md:0 4px 16px rgba(11,29,58,.08);
+  --shadow-lg:0 8px 32px rgba(11,29,58,.12);
+  --radius:6px;--radius-lg:10px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:var(--font-body);color:var(--gray-800);background:var(--off-white);line-height:1.8;font-size:15px;-webkit-font-smoothing:antialiased}
+a{color:var(--teal);text-decoration:none}
+a:hover{text-decoration:underline}
+img{max-width:100%}
+
+/* NAV */
+.nav{position:sticky;top:0;z-index:100;background:var(--white);border-bottom:1px solid var(--gray-100);backdrop-filter:blur(12px)}
+.nav-inner{max-width:var(--max-w);margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:56px}
+.nav-logo{font-family:var(--font-display);font-size:16px;font-weight:600;color:var(--navy);cursor:pointer;display:flex;align-items:center;gap:8px}
+.nav-logo .accent{color:var(--teal)}
+.nav-links{display:flex;gap:24px;align-items:center}
+.nav-links a{font-size:13px;color:var(--gray-600);font-weight:400;text-decoration:none;cursor:pointer;transition:color .2s}
+.nav-links a:hover{color:var(--navy);text-decoration:none}
+.nav-links a.active{color:var(--navy);font-weight:500}
+.nav-cta{font-size:12px;padding:7px 18px;background:var(--teal);color:var(--white);border-radius:var(--radius);font-weight:500;cursor:pointer;border:none;transition:background .2s}
+.nav-cta:hover{background:var(--teal-light);text-decoration:none}
+
+/* PAGE CONTAINER */
+.page{display:none}
+.page.active{display:block}
+
+/* HERO */
+.hero{background:var(--navy);color:var(--white);padding:72px 24px 64px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;top:-40%;right:-20%;width:600px;height:600px;border-radius:50%;background:rgba(10,123,107,.12);pointer-events:none}
+.hero::after{content:"";position:absolute;bottom:-30%;left:-15%;width:500px;height:500px;border-radius:50%;background:rgba(184,134,11,.06);pointer-events:none}
+.hero-label{font-size:11px;letter-spacing:3px;color:var(--teal-light);margin-bottom:16px;font-weight:500}
+.hero h1{font-family:var(--font-display);font-size:32px;font-weight:600;line-height:1.5;margin-bottom:12px;position:relative}
+.hero h1 em{font-style:normal;color:var(--teal-light)}
+.hero-sub{font-size:15px;color:rgba(255,255,255,.7);max-width:520px;margin:0 auto 28px;line-height:1.8}
+.hero-btn{display:inline-block;padding:14px 36px;background:var(--teal);color:var(--white);border-radius:var(--radius);font-size:15px;font-weight:500;cursor:pointer;transition:transform .2s,box-shadow .2s;position:relative}
+.hero-btn:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(10,123,107,.3);text-decoration:none}
+.hero-note{font-size:12px;color:rgba(255,255,255,.45);margin-top:12px}
+.hero-trust{display:flex;gap:24px;justify-content:center;margin-top:20px}
+.hero-trust span{font-size:12px;color:rgba(255,255,255,.55);display:flex;align-items:center;gap:6px}
+.hero-trust span::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--teal-light)}
+
+/* SECTION */
+.section{padding:64px 24px}
+.section-inner{max-width:var(--max-w);margin:0 auto}
+.section-label{font-size:11px;letter-spacing:2px;color:var(--teal);font-weight:500;margin-bottom:8px}
+.section-title{font-family:var(--font-display);font-size:22px;font-weight:600;color:var(--navy);margin-bottom:8px;line-height:1.5}
+.section-desc{font-size:14px;color:var(--gray-500);margin-bottom:32px;max-width:600px}
+.section.alt{background:var(--cream)}
+
+/* JOB CARDS */
+.jobs-grid{display:grid;gap:20px}
+.job-card{background:var(--white);border:1px solid var(--gray-100);border-radius:var(--radius-lg);padding:28px;transition:box-shadow .2s;cursor:pointer}
+.job-card:hover{box-shadow:var(--shadow-md)}
+.job-card-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px}
+.job-badge{font-size:11px;padding:3px 10px;border-radius:20px;font-weight:500}
+.job-badge.active{background:var(--teal-bg);color:var(--teal)}
+.job-badge.soon{background:var(--gold-bg);color:var(--gold)}
+.job-card h3{font-size:17px;font-weight:600;color:var(--navy);margin-bottom:14px;line-height:1.5}
+.job-meta-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px 24px;font-size:13px;margin-bottom:16px}
+.job-meta-grid dt{color:var(--gray-400);font-weight:400}
+.job-meta-grid dd{color:var(--gray-700);font-weight:500}
+.job-card-footer{display:flex;justify-content:space-between;align-items:center;padding-top:14px;border-top:1px solid var(--gray-100)}
+.job-card-footer .why{font-size:12px;color:var(--gray-500);max-width:60%;line-height:1.6}
+.job-detail-btn{font-size:13px;padding:8px 20px;background:var(--navy);color:var(--white);border-radius:var(--radius);font-weight:500;cursor:pointer;border:none;transition:background .2s}
+.job-detail-btn:hover{background:var(--navy-light)}
+
+/* WHY CARDS */
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.why-card{background:var(--white);border:1px solid var(--gray-100);border-radius:var(--radius-lg);padding:28px 24px}
+.why-num{font-family:var(--font-display);font-size:28px;font-weight:600;color:var(--teal);margin-bottom:8px}
+.why-card h4{font-size:15px;font-weight:600;color:var(--navy);margin-bottom:8px}
+.why-card p{font-size:13px;color:var(--gray-500);line-height:1.7}
+
+/* CASE CARDS */
+.cases-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.case-card{background:var(--white);border:1px solid var(--gray-100);border-radius:var(--radius-lg);padding:24px;cursor:pointer;transition:box-shadow .2s}
+.case-card:hover{box-shadow:var(--shadow-md)}
+.case-head{display:flex;gap:12px;align-items:center;margin-bottom:12px}
+.case-avatar{width:40px;height:40px;border-radius:50%;background:var(--navy);color:var(--white);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:15px;font-weight:600}
+.case-info h4{font-size:14px;font-weight:500;color:var(--navy)}
+.case-info p{font-size:12px;color:var(--gray-400)}
+.case-body{font-size:13px;color:var(--gray-600);line-height:1.7;margin-bottom:14px}
+.case-nums{display:flex;gap:16px;align-items:center}
+.case-num{text-align:center}
+.case-num .v{font-size:18px;font-weight:600;color:var(--navy)}
+.case-num .l{font-size:10px;color:var(--gray-400);margin-top:2px}
+.case-arrow{color:var(--gray-300);font-size:18px}
+.case-link{display:flex;align-items:center;justify-content:flex-end;gap:4px;margin-top:14px;padding-top:12px;border-top:1px solid var(--gray-100);font-size:13px;font-weight:500;color:var(--teal);cursor:pointer;transition:gap .2s}
+.case-link:hover{gap:8px}
+.case-link::after{content:"→";font-size:14px}
+
+/* ARTICLES */
+.articles-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.article-card{background:var(--white);border:1px solid var(--gray-100);border-radius:var(--radius-lg);overflow:hidden;cursor:pointer;transition:box-shadow .2s}
+.article-card:hover{box-shadow:var(--shadow-md)}
+.article-thumb{height:120px;background:var(--cream);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:32px;color:var(--gray-200)}
+.article-thumb.t1{background:linear-gradient(135deg,var(--gold-bg),var(--cream))}
+.article-thumb.t2{background:linear-gradient(135deg,var(--red-bg),var(--cream))}
+.article-thumb.t3{background:linear-gradient(135deg,var(--teal-bg),var(--cream))}
+.article-thumb.t4{background:linear-gradient(135deg,var(--blue-bg),var(--cream))}
+.article-body{padding:16px 18px 20px}
+.article-tag{font-size:10px;font-weight:500;margin-bottom:6px}
+.article-tag.salary{color:var(--gold)}.article-tag.risk{color:var(--red)}.article-tag.process{color:var(--blue)}.article-tag.compare{color:var(--teal)}.article-tag.fail{color:#C0392B}.article-tag.voice{color:#6C3483}
+.article-card h4{font-size:14px;font-weight:500;color:var(--navy);line-height:1.5;margin-bottom:6px}
+.article-card p{font-size:12px;color:var(--gray-400);line-height:1.6}
+
+/* PROCESS */
+.process-flow{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap}
+.process-step{background:var(--white);border:1px solid var(--gray-100);border-radius:var(--radius-lg);padding:16px 20px;text-align:center;min-width:120px}
+.process-step .num{font-family:var(--font-display);font-size:20px;font-weight:600;color:var(--teal);margin-bottom:4px}
+.process-step .name{font-size:13px;font-weight:500;color:var(--navy);margin-bottom:2px}
+.process-step .desc{font-size:11px;color:var(--gray-400)}
+.process-arrow{color:var(--gray-300);font-size:20px}
+
+/* FAQ */
+.faq-list{max-width:var(--content-w);margin:0 auto}
+.faq-item{border-bottom:1px solid var(--gray-100);padding:18px 0;cursor:pointer}
+.faq-q{display:flex;justify-content:space-between;align-items:center;font-size:14px;font-weight:500;color:var(--navy)}
+.faq-icon{font-size:18px;color:var(--gray-300);transition:transform .3s}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .3s;font-size:13px;color:var(--gray-500);line-height:1.8}
+.faq-item.open .faq-a{max-height:200px;padding-top:10px}
+.faq-item.open .faq-icon{transform:rotate(45deg)}
+
+/* CTA */
+.cta-section{background:var(--navy);padding:56px 24px;text-align:center}
+.cta-section h2{font-family:var(--font-display);font-size:22px;color:var(--white);font-weight:600;margin-bottom:8px}
+.cta-section p{font-size:14px;color:rgba(255,255,255,.6);margin-bottom:24px}
+.cta-form{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;max-width:560px;margin:0 auto}
+.cta-input{padding:10px 16px;border:1px solid rgba(255,255,255,.15);border-radius:var(--radius);background:rgba(255,255,255,.08);color:var(--white);font-size:13px;min-width:140px;font-family:var(--font-body)}
+.cta-input::placeholder{color:rgba(255,255,255,.35)}
+.cta-submit{padding:10px 28px;background:var(--teal);color:var(--white);border:none;border-radius:var(--radius);font-size:14px;font-weight:500;cursor:pointer;font-family:var(--font-body)}
+
+/* FOOTER */
+.footer{background:var(--gray-800);color:rgba(255,255,255,.4);padding:32px 24px;text-align:center;font-size:12px}
+.footer a{color:rgba(255,255,255,.5)}
+.footer-links{margin-bottom:12px;display:flex;gap:20px;justify-content:center}
+
+/* ====== ARTICLE DETAIL PAGE ====== */
+.article-hero{background:var(--navy);padding:48px 24px 40px;color:var(--white)}
+.article-hero-inner{max-width:var(--content-w);margin:0 auto}
+.article-hero .tag{font-size:11px;color:var(--teal-light);font-weight:500;margin-bottom:8px}
+.article-hero h1{font-family:var(--font-display);font-size:26px;font-weight:600;line-height:1.5;margin-bottom:12px}
+.article-hero .meta{font-size:12px;color:rgba(255,255,255,.45)}
+.article-content{max-width:var(--content-w);margin:0 auto;padding:48px 24px}
+.article-content h2{font-family:var(--font-display);font-size:19px;font-weight:600;color:var(--navy);margin:40px 0 16px;padding-bottom:8px;border-bottom:2px solid var(--teal)}
+.article-content h3{font-size:16px;font-weight:600;color:var(--navy);margin:28px 0 12px}
+.article-content p{font-size:15px;color:var(--gray-700);line-height:1.9;margin-bottom:16px}
+.article-content ul,.article-content ol{margin:12px 0 20px 20px}
+.article-content li{font-size:14px;color:var(--gray-600);line-height:1.8;margin-bottom:6px}
+.article-content blockquote{border-left:3px solid var(--teal);padding:14px 20px;background:var(--teal-pale);margin:20px 0;border-radius:0 var(--radius) var(--radius) 0;font-size:14px;color:var(--gray-600);line-height:1.8}
+.article-content .callout{background:var(--cream);border:1px solid var(--gray-200);border-radius:var(--radius-lg);padding:20px 24px;margin:24px 0;font-size:14px;color:var(--gray-600);line-height:1.8}
+.article-content .callout strong{color:var(--navy)}
+.article-content table{width:100%;border-collapse:collapse;margin:20px 0;font-size:13px}
+.article-content th{background:var(--navy);color:var(--white);padding:10px 14px;text-align:left;font-weight:500}
+.article-content td{padding:10px 14px;border-bottom:1px solid var(--gray-100);color:var(--gray-600)}
+.article-content tr:nth-child(even) td{background:var(--gray-50)}
+
+/* SIDEBAR CTA */
+.sidebar-cta{background:var(--teal-bg);border:1px solid rgba(10,123,107,.15);border-radius:var(--radius-lg);padding:24px;margin:40px 0;text-align:center}
+.sidebar-cta h3{font-size:16px;font-weight:600;color:var(--navy);margin-bottom:8px}
+.sidebar-cta p{font-size:13px;color:var(--gray-500);margin-bottom:16px}
+
+/* RELATED */
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:32px}
+
+/* JOB DETAIL */
+.job-detail-hero{background:var(--navy);padding:40px 24px;color:var(--white)}
+.job-detail-inner{max-width:var(--content-w);margin:0 auto}
+.job-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:24px 0}
+.job-stat{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1);border-radius:var(--radius);padding:16px;text-align:center}
+.job-stat .v{font-size:22px;font-weight:600}
+.job-stat .l{font-size:11px;color:rgba(255,255,255,.5);margin-top:4px}
+.job-detail-content{max-width:var(--content-w);margin:0 auto;padding:48px 24px}
+.job-section{margin-bottom:32px}
+.job-section h3{font-size:16px;font-weight:600;color:var(--navy);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.job-section h3::before{content:"";width:3px;height:18px;background:var(--teal);border-radius:2px}
+.risk-box{background:var(--cream);border:1px solid var(--gray-200);border-radius:var(--radius-lg);padding:20px}
+.risk-item{margin-bottom:10px;font-size:14px;line-height:1.7;color:var(--gray-600)}
+.risk-item strong{color:var(--navy);font-weight:500}
+.risk-item:last-child{margin-bottom:0}
+.timeline-box{border-left:3px solid var(--teal);padding-left:20px;font-size:14px;color:var(--gray-600);line-height:1.8}
+
+/* CASE DETAIL */
+.case-detail-hero{background:var(--navy);padding:48px 24px;color:var(--white);text-align:center}
+.case-detail-avatar{width:64px;height:64px;border-radius:50%;background:var(--teal);color:var(--white);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:24px;font-weight:600;margin:0 auto 16px}
+.case-detail-nums{display:flex;gap:24px;justify-content:center;margin-top:24px}
+.case-detail-num{text-align:center}
+.case-detail-num .v{font-size:24px;font-weight:600}
+.case-detail-num .l{font-size:11px;color:rgba(255,255,255,.5);margin-top:4px}
+
+/* BREADCRUMB */
+.breadcrumb{font-size:12px;color:var(--gray-400);padding:12px 0;margin-bottom:0}
+.breadcrumb a{color:var(--gray-400)}
+
+/* BACK LINK */
+.back-link{font-size:13px;color:var(--gray-400);cursor:pointer;display:inline-flex;align-items:center;gap:4px;margin-bottom:16px}
+.back-link:hover{color:var(--navy)}
+
+/* ARTICLES LIST PAGE */
+.filter-btn{padding:7px 16px;border:1px solid var(--gray-200);border-radius:20px;background:var(--white);font-size:12px;color:var(--gray-500);cursor:pointer;font-family:var(--font-body);transition:all .2s}
+.filter-btn:hover{border-color:var(--teal);color:var(--teal)}
+.filter-btn.active{background:var(--navy);color:var(--white);border-color:var(--navy)}
+.articles-list-grid{display:flex;flex-direction:column;gap:16px}
+.al-card{display:flex;gap:0;background:var(--white);border:1px solid var(--gray-100);border-radius:var(--radius-lg);overflow:hidden;cursor:pointer;transition:box-shadow .2s,transform .15s}
+.al-card:hover{box-shadow:var(--shadow-md);transform:translateY(-2px)}
+.al-card.hidden{display:none}
+.al-thumb{width:140px;min-height:120px;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:36px;color:var(--gray-200);flex-shrink:0}
+.al-body{padding:20px 24px;flex:1;display:flex;flex-direction:column;justify-content:center}
+.al-tag{font-size:11px;font-weight:500;margin-bottom:4px}
+.al-tag.salary{color:var(--gold)}.al-tag.risk{color:var(--red)}.al-tag.fail{color:#C0392B}.al-tag.process{color:var(--blue)}.al-tag.compare{color:var(--teal)}.al-tag.buyer{color:var(--gold)}
+.al-body h3{font-size:16px;font-weight:600;color:var(--navy);line-height:1.5;margin-bottom:6px}
+.al-body p{font-size:13px;color:var(--gray-500);line-height:1.7;margin-bottom:8px}
+.al-meta{display:flex;gap:16px;font-size:11px;color:var(--gray-400)}
+
+/* ANIMATION */
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.fade-up{animation:fadeUp .5s ease both}
+.d1{animation-delay:.1s}.d2{animation-delay:.2s}.d3{animation-delay:.3s}.d4{animation-delay:.4s}
+
+@media(max-width:768px){
+  .nav-links{display:none}
+  .hero h1{font-size:24px}
+  .why-grid,.articles-grid{grid-template-columns:1fr}
+  .cases-grid{grid-template-columns:1fr}
+  .job-meta-grid{grid-template-columns:1fr}
+  .job-stats{grid-template-columns:1fr}
+  .process-flow{flex-direction:column}
+  .process-arrow{transform:rotate(90deg)}
+  .al-card{flex-direction:column}
+  .al-thumb{width:100%;min-height:80px}
+}
+</style>
+</head>
+<body id="artifacts-component-root-html">
+
+<!-- ===== NAVIGATION ===== -->
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-logo" onclick="showPage('home')">承継<span class="accent">院長</span>ナビ</div>
+    <div class="nav-links">
+      <a onclick="showPage('home')" id="nav-home" class="">トップ</a>
+      <a onclick="showPage('home','jobs')">求人一覧</a>
+      <a onclick="showPage('articles-list')" id="nav-articles-list" class="active">コラム一覧</a>
+      <a onclick="showPage('home','cases')">体験談</a>
+      <a class="nav-cta" onclick="showPage('home','cta')">無料登録</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ==================== HOME ==================== -->
+<div class="page" id="page-home">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-label">M&amp;A承継クリニック専門</div>
+    <h1 class="fade-up">開業リスクゼロで、<br><em>院長キャリア</em>を始める</h1>
+    <p class="hero-sub fade-up d1">クリニックM&amp;A承継後の「承継院長」ポストに特化した専門メディア。<br>リスク・年収・就任プロセスを正直に解説し、案件をご紹介します。</p>
+    <div class="hero-btn fade-up d2" onclick="showPage('home','cta')">承継院長候補として無料登録する</div>
+    <div class="hero-note fade-up d3">※ 登録1分・秘密厳守・勤務先に知られません</div>
+    <div class="hero-trust fade-up d3">
+      <span>弁護士・税理士監修</span>
+      <span>秘密厳守</span>
+      <span>完全無料</span>
+    </div>
+  </section>
+
+  <!-- JOBS -->
+  <section class="section" id="section-jobs">
+    <div class="section-inner">
+      <div class="section-label">JOBS</div>
+      <div class="section-title">現在募集中の承継院長ポスト</div>
+      <div class="section-desc">M&amp;A成立済みクリニックの院長候補を募集しています。</div>
+      <div class="jobs-grid">
+        <div class="job-card" onclick="showPage('job-detail-1')">
+          <div class="job-card-head"><span class="job-badge active">募集中</span></div>
+          <h3>【内科】東京都世田谷区｜承継クリニックの院長ポスト</h3>
+          <div class="job-meta-grid">
+            <dt>年収</dt><dd>1,800〜2,200万円</dd>
+            <dt>診療科</dt><dd>一般内科・生活習慣病</dd>
+            <dt>患者数</dt><dd>1日平均45名（承継済み）</dd>
+            <dt>勤務</dt><dd>週4.5日・当直なし</dd>
+            <dt>スタッフ</dt><dd>看護師3名・事務2名（全員継続）</dd>
+            <dt>前院長</dt><dd>3ヶ月間の引き継ぎあり</dd>
+          </div>
+          <div class="job-card-footer">
+            <div class="why">M&amp;A成立済み。買い手法人が院長候補を探しています。経営破綻リスクは法人側が負担。</div>
+            <div class="job-detail-btn">詳細を見る →</div>
+          </div>
+        </div>
+        <div class="job-card" onclick="showPage('job-detail-2')">
+          <div class="job-card-head"><span class="job-badge active">募集中</span></div>
+          <h3>【皮膚科】神奈川県横浜市｜美容皮膚科併設クリニック</h3>
+          <div class="job-meta-grid">
+            <dt>年収</dt><dd>2,000〜2,500万円+インセンティブ</dd>
+            <dt>診療科</dt><dd>皮膚科・美容皮膚科</dd>
+            <dt>患者数</dt><dd>1日平均35名</dd>
+            <dt>勤務</dt><dd>週5日・完全予約制</dd>
+            <dt>スタッフ</dt><dd>看護師4名・事務3名・カウンセラー1名</dd>
+            <dt>特徴</dt><dd>保険+自費のハイブリッド型</dd>
+          </div>
+          <div class="job-card-footer">
+            <div class="why">前院長の独立開業に伴う後任募集。患者基盤が安定しており、美容の経験を積みたい医師に最適。</div>
+            <div class="job-detail-btn">詳細を見る →</div>
+          </div>
+        </div>
+        <div class="job-card">
+          <div class="job-card-head"><span class="job-badge soon">近日公開</span></div>
+          <h3>【整形外科】埼玉県さいたま市｜リハビリ併設クリニック</h3>
+          <div class="job-meta-grid">
+            <dt>年収</dt><dd>2,000〜2,400万円</dd>
+            <dt>診療科</dt><dd>整形外科・リハビリテーション</dd>
+            <dt>勤務</dt><dd>週5日・当直なし</dd>
+            <dt>特徴</dt><dd>3年後の買取オプション付き</dd>
+          </div>
+          <div class="job-card-footer">
+            <div class="why">承継手続き進行中。登録者に優先案内。</div>
+            <div class="job-detail-btn">登録して待つ →</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY -->
+  <section class="section alt">
+    <div class="section-inner">
+      <div class="section-label">WHY</div>
+      <div class="section-title">なぜ「承継院長」というキャリアなのか</div>
+      <div class="section-desc">一般的な「雇われ院長」とは異なる、M&amp;A承継クリニックならではのメリット。</div>
+      <div class="why-grid">
+        <div class="why-card"><div class="why-num">01</div><h4>開業リスクゼロ</h4><p>1〜2億円の初期投資が不要。経営ノウハウを学びながら院長キャリアをスタートできます。将来の独立開業の準備期間としても最適です。</p></div>
+        <div class="why-card"><div class="why-num">02</div><h4>初日から患者がいる</h4><p>承継クリニックなら既存患者・スタッフがそのまま引き継がれます。ゼロからの集患が不要で、診療に集中できる環境です。</p></div>
+        <div class="why-card"><div class="why-num">03</div><h4>経営リスクは法人負担</h4><p>経営破綻リスクは買い手法人が負担。院長の管理医師としての責任範囲を契約書で明確化し、不透明なリスクを排除します。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CASES -->
+  <section class="section" id="section-cases">
+    <div class="section-inner">
+      <div class="section-label">CASES</div>
+      <div class="section-title">承継院長になった医師たちの声</div>
+      <div class="section-desc">実際に承継クリニックの院長に就任した医師の転職ストーリー。</div>
+      <div class="cases-grid">
+        <div class="case-card" onclick="showPage('case-detail-1')">
+          <div class="case-head">
+            <div class="case-avatar">A</div>
+            <div class="case-info"><h4>40代男性・整形外科</h4><p>大学病院勤務医 → 承継クリニック院長</p></div>
+          </div>
+          <div class="case-body">開業資金を貯める間に院長経験を積みたかった。承継クリニックなら患者もスタッフもいる状態でスタートでき、3年後の買取オプションも契約に含まれている。</div>
+          <div class="case-nums">
+            <div class="case-num"><div class="v">1,700万</div><div class="l">前職年収</div></div>
+            <div class="case-arrow">→</div>
+            <div class="case-num"><div class="v">2,100万</div><div class="l">現年収</div></div>
+          </div>
+          <div class="case-link">詳しく見る</div>
+        </div>
+        <div class="case-card" onclick="showPage('case-detail-2')">
+          <div class="case-head">
+            <div class="case-avatar" style="background:var(--gold)">B</div>
+            <div class="case-info"><h4>30代女性・産婦人科</h4><p>総合病院医長 → 承継産婦人科クリニック院長</p></div>
+          </div>
+          <div class="case-body">子育て中で週3日勤務だったが、将来の開業に向け経営を学びたかった。法人側も開業意向を理解した上での採用で、安心してスタートできた。</div>
+          <div class="case-nums">
+            <div class="case-num"><div class="v">1,200万</div><div class="l">前職年収</div></div>
+            <div class="case-arrow">→</div>
+            <div class="case-num"><div class="v">1,900万</div><div class="l">現年収</div></div>
+          </div>
+          <div class="case-link">詳しく見る</div>
+        </div>
+        <div class="case-card" onclick="showPage('case-detail-3')">
+          <div class="case-head">
+            <div class="case-avatar" style="background:var(--navy-soft)">C</div>
+            <div class="case-info"><h4>40代男性・呼吸器内科</h4><p>雇われ院長（前職）→ 承継クリニック院長</p></div>
+          </div>
+          <div class="case-body">以前の雇われ院長ポストでは法人オーナーとの方針対立で退職を余儀なくされた。今回は契約書で責任範囲を明確にした上での就任で、安心感が全く違う。</div>
+          <div class="case-nums">
+            <div class="case-num"><div class="v">1,800万</div><div class="l">前職年収</div></div>
+            <div class="case-arrow">→</div>
+            <div class="case-num"><div class="v">2,000万</div><div class="l">現年収</div></div>
+          </div>
+          <div class="case-link">詳しく見る</div>
+        </div>
+        <div class="case-card" onclick="showPage('case-detail-4')">
+          <div class="case-head">
+            <div class="case-avatar" style="background:var(--teal)">D</div>
+            <div class="case-info"><h4>30代男性・耳鼻咽喉科</h4><p>大学病院 → 承継耳鼻科クリニック院長</p></div>
+          </div>
+          <div class="case-body">大学で診療以外の業務が増え、臨床に集中したいと考えて転職。前院長からの引き継ぎ期間中に地域の患者との信頼関係を構築でき、スムーズに移行できた。</div>
+          <div class="case-nums">
+            <div class="case-num"><div class="v">1,200万</div><div class="l">前職年収</div></div>
+            <div class="case-arrow">→</div>
+            <div class="case-num"><div class="v">1,600万</div><div class="l">現年収</div></div>
+          </div>
+          <div class="case-link">詳しく見る</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ARTICLES -->
+  <section class="section alt">
+    <div class="section-inner">
+      <div class="section-label">ARTICLES</div>
+      <div class="section-title">承継院長を知るためのコンテンツ</div>
+      <div class="section-desc">年収、リスク、失敗事例まで — 正直に解説します。</div>
+      <div class="articles-grid">
+        <div class="article-card" onclick="showPage('article-salary')">
+          <div class="article-thumb t1">¥</div>
+          <div class="article-body"><div class="article-tag salary">年収・報酬</div><h4>承継院長の年収相場 — M&amp;A承継クリニック編</h4><p>病院長2,633万〜法人3,021万。承継クリニック特有の報酬設計を統計データで解説</p></div>
+        </div>
+        <div class="article-card" onclick="showPage('article-risk')">
+          <div class="article-thumb t2">⚖</div>
+          <div class="article-body"><div class="article-tag risk">リスク</div><h4>管理医師の法的責任と名義貸しの違い</h4><p>行政上の管理責任、経営破綻時の責任範囲を弁護士監修で解説</p></div>
+        </div>
+        <div class="article-card" onclick="showPage('article-fail')">
+          <div class="article-thumb t2">!</div>
+          <div class="article-body"><div class="article-tag fail">失敗事例</div><h4>雇われ院長で失敗した医師たちの共通点</h4><p>「騙された」「聞いてた話と違う」…転職前に知っておくべき失敗パターン</p></div>
+        </div>
+        <div class="article-card" onclick="showPage('article-process')">
+          <div class="article-thumb t4">→</div>
+          <div class="article-body"><div class="article-tag process">就任プロセス</div><h4>M&amp;A成立後、院長就任までの完全ガイド</h4><p>前院長の引き継ぎ・保健所届出・スタッフ面談の流れ</p></div>
+        </div>
+        <div class="article-card" onclick="showPage('article-compare')">
+          <div class="article-thumb t3">⇄</div>
+          <div class="article-body"><div class="article-tag compare">比較</div><h4>開業 vs 承継院長 vs 承継開業の違い</h4><p>初期投資・裁量権・将来性を3軸で徹底比較</p></div>
+        </div>
+        <div class="article-card">
+          <div class="article-thumb t3">Q</div>
+          <div class="article-body"><div class="article-tag compare">基礎知識</div><h4>承継院長とは？ — 従来の雇われ院長との違い</h4><p>M&amp;A承継という新しい文脈での院長ポストの本質を解説</p></div>
+        </div>
+        <div class="article-card" onclick="showPage('buyer-interview-1')">
+          <div class="article-thumb t1" style="background:linear-gradient(135deg,var(--gold-bg),var(--cream))">🏥</div>
+          <div class="article-body"><div class="article-tag" style="color:var(--gold)">買い手インタビュー</div><h4>「院長付きM&amp;Aは成約率が2倍になる」買い手法人の本音</h4><p>なぜ買い手は院長付き案件を求めるのか</p></div>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:28px">
+        <a onclick="showPage('articles-list')" style="display:inline-flex;align-items:center;gap:6px;padding:10px 28px;border:1px solid var(--gray-200);border-radius:var(--radius);font-size:13px;font-weight:500;color:var(--navy);cursor:pointer;transition:all .2s;text-decoration:none" onmouseover="this.style.borderColor='var(--teal)';this.style.color='var(--teal)'" onmouseout="this.style.borderColor='var(--gray-200)';this.style.color='var(--navy)'">すべてのコラムを見る →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="section">
+    <div class="section-inner">
+      <div class="section-label">PROCESS</div>
+      <div class="section-title">登録から就任までの流れ</div>
+      <div class="section-desc" style="margin-bottom:40px">最短3ヶ月で院長就任。まずは情報収集からでもOKです。</div>
+      <div class="process-flow">
+        <div class="process-step"><div class="num">1</div><div class="name">無料登録</div><div class="desc">1分で完了</div></div>
+        <div class="process-arrow">→</div>
+        <div class="process-step"><div class="num">2</div><div class="name">面談</div><div class="desc">希望条件の確認</div></div>
+        <div class="process-arrow">→</div>
+        <div class="process-step"><div class="num">3</div><div class="name">案件紹介</div><div class="desc">承継クリニック案件</div></div>
+        <div class="process-arrow">→</div>
+        <div class="process-step"><div class="num">4</div><div class="name">見学・面接</div><div class="desc">現地で確認</div></div>
+        <div class="process-arrow">→</div>
+        <div class="process-step"><div class="num">5</div><div class="name">院長就任</div><div class="desc">引き継ぎ後スタート</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section alt">
+    <div class="section-inner">
+      <div class="section-label">FAQ</div>
+      <div class="section-title">よくある質問</div>
+      <div class="faq-list">
+        <div class="faq-item" onclick="this.classList.toggle('open')"><div class="faq-q"><span>名義貸しとは何が違うのですか？</span><span class="faq-icon">+</span></div><div class="faq-a">名義貸しは実態のない形式的な管理者登録であり、医療法違反に該当します。承継院長は実際にクリニックで診療を行い、管理者として実質的に医療機関を運営する正当なポジションです。契約書で責任範囲を明確にした上で就任します。</div></div>
+        <div class="faq-item" onclick="this.classList.toggle('open')"><div class="faq-q"><span>経営が悪化したら個人で責任を負いますか？</span><span class="faq-icon">+</span></div><div class="faq-a">当サイトで紹介する案件では、経営破綻リスクは法人側が負担し、院長個人の連帯保証を求めません。ただし、医療法上の管理者としての安全管理体制確保義務は院長に帰属します。詳細は契約書に明記し、弁護士チェックを推奨しています。</div></div>
+        <div class="faq-item" onclick="this.classList.toggle('open')"><div class="faq-q"><span>登録したら勤務先に知られませんか？</span><span class="faq-icon">+</span></div><div class="faq-a">知られません。登録情報は厳重に管理し、ご本人の許可なく第三者に開示することは一切ありません。案件紹介時も、先生の個人情報は匿名化した上で法人側に提示します。</div></div>
+        <div class="faq-item" onclick="this.classList.toggle('open')"><div class="faq-q"><span>将来の開業意向があっても応募できますか？</span><span class="faq-icon">+</span></div><div class="faq-a">応募可能です。むしろ、開業意向のある医師を高く評価する法人も多くあります。承継院長として経営ノウハウを学び、数年後に独立する——という計画を正直に伝えた上で採用されたケースも多数あります。</div></div>
+        <div class="faq-item" onclick="this.classList.toggle('open')"><div class="faq-q"><span>クリニックを将来的に買い取ることはできますか？</span><span class="faq-icon">+</span></div><div class="faq-a">案件によっては、一定期間（3〜5年）の勤務後にクリニックの買取オプション（優先交渉権）が契約に含まれるものもあります。将来の独立開業を視野に入れている医師にとっては、リスクを抑えたステップアップの手段となります。</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section" id="section-cta">
+    <h2>まずは情報収集から。<br>承継院長候補として登録しませんか？</h2>
+    <p>登録後、M&amp;A承継クリニックの案件が出た際に優先的にご連絡します。</p>
+    <div class="cta-form">
+      <input type="text" class="cta-input" placeholder="お名前">
+      <input type="text" class="cta-input" placeholder="診療科">
+      <input type="email" class="cta-input" placeholder="メールアドレス">
+      <button class="cta-submit">無料登録する</button>
+    </div>
+  </section>
+
+</div>
+
+<!-- ==================== ARTICLE: SALARY ==================== -->
+<div class="page" id="page-article-salary">
+  <div class="article-hero">
+    <div class="article-hero-inner">
+      <div class="tag">年収・報酬</div>
+      <h1>承継院長の年収相場<br>— M&amp;A承継クリニック編</h1>
+      <div class="meta">2026年4月 ｜ 監修：○○税理士法人 ○○氏 ｜ 読了目安：8分</div>
+    </div>
+  </div>
+  <div class="article-content">
+    <div class="breadcrumb"><a onclick="showPage('home')">トップ</a> → <a>コラム</a> → 承継院長の年収相場</div>
+
+    <div class="callout">
+      <strong>この記事でわかること</strong><br>
+      ・院長の平均年収（令和6年統計データ）<br>
+      ・病院長 vs クリニック院長 vs 勤務医の比較<br>
+      ・承継クリニック特有の報酬設計（固定給＋インセンティブ）<br>
+      ・年収交渉で確認すべき5つのポイント
+    </div>
+
+    <h2>1. 院長の平均年収データ（令和6年統計）</h2>
+    <p>令和6年の賃金構造基本統計調査によると、医師全体の平均年収は約1,338万円（平均年齢44.1歳）です。では、院長職に就くとどの程度変わるのでしょうか。</p>
+    <p>第24回医療経済実態調査によると、病院長全体の平均年収は約2,633万円であり、医師全体と比べて約1,300万円の差があります。</p>
+    <table>
+      <tbody><tr><th>施設区分</th><th>平均年収</th></tr>
+      <tr><td>国立病院 院長</td><td>約1,908万円</td></tr>
+      <tr><td>公立病院 院長</td><td>約2,088万円</td></tr>
+      <tr><td>医療法人 院長（病院）</td><td>約3,021万円</td></tr>
+      <tr><td>クリニック 院長（入院あり）</td><td>約3,438万円</td></tr>
+      <tr><td>クリニック 院長（入院なし）</td><td>約2,578万円</td></tr>
+      <tr><td>勤務医 全体平均</td><td>約1,338万円</td></tr>
+    </tbody></table>
+    <p>特に注目すべきは、クリニック院長（入院なし）でも平均約2,578万円と、勤務医の約2倍の水準にあることです。</p>
+
+    <h2>2. 承継クリニック院長の報酬設計</h2>
+    <p>M&amp;A承継クリニックの院長報酬は、一般的な雇われ院長とは異なる構造を持つことが多くあります。</p>
+    <h3>固定給＋インセンティブ型</h3>
+    <p>多くの承継クリニックでは、基本年俸（固定給）に加えて、患者数や売上に連動するインセンティブを設けています。固定給で生活基盤を安定させつつ、クリニックの成長に応じて収入が増える設計です。</p>
+    <blockquote>当サイトで紹介している案件の実績では、基本年俸1,500〜1,800万円＋インセンティブで、就任1年後の総年収は2,000〜2,500万円のレンジに収まるケースがほとんどです。</blockquote>
+
+    <h3>買取オプション付き契約の経済メリット</h3>
+    <p>一部の案件では、3〜5年の勤務後にクリニックの買取オプション（優先交渉権）が契約に含まれています。この場合、院長として勤務しながら経営実績を積み、将来的にはオーナー院長として独立する道が開けます。</p>
+
+    <h2>3. 年収交渉で確認すべき5つのポイント</h2>
+    <ol>
+      <li><strong>インセンティブの算定基準：</strong>売上連動か、患者数連動か、利益連動か。上限の有無も確認</li>
+      <li><strong>社会保険の加入状況：</strong>厚生年金か国保か。年金は将来の収入に直結</li>
+      <li><strong>退職金の有無：</strong>勤続年数に応じた退職金制度があるか</li>
+      <li><strong>経費の扱い：</strong>学会参加費、書籍代、交通費が法人負担かどうか</li>
+      <li><strong>買取オプションの条件：</strong>買取価格の算定方法、優先交渉権の期間</li>
+    </ol>
+
+    <h2>4. 失敗事例：年収だけで選んで後悔したケース</h2>
+    <p>高額な年収に惹かれて飛びついたものの、入職後に「聞いていた話と違う」と感じるケースは少なくありません。</p>
+    <p>年収2,500万円という条件で承継院長に就任した40代内科医のケースでは、入職後にインセンティブの算定基準が実質的に達成不可能な水準だったことが判明。固定給は1,400万円で、前職の勤務医時代より低い結果に——。</p>
+    <blockquote>年収の「上限」だけでなく、固定給の水準と、インセンティブの算定基準・達成実績を必ず確認しましょう。</blockquote>
+
+    <div class="sidebar-cta">
+      <h3>年収・報酬について個別に相談しませんか？</h3>
+      <p>実際の案件の報酬水準や交渉のポイントをお伝えします。</p>
+      <div class="hero-btn" onclick="showPage('home','cta')">無料相談する</div>
+    </div>
+
+    <div style="border-top:1px solid var(--gray-100);padding-top:24px;margin-top:8px">
+      <div class="section-label">RELATED</div>
+      <div class="section-title" style="font-size:18px">関連記事</div>
+      <div class="related-grid">
+        <div class="article-card" onclick="showPage('article-risk')"><div class="article-body"><div class="article-tag risk">リスク</div><h4>管理医師の法的責任と名義貸しの違い</h4><p>責任範囲を弁護士監修で解説</p></div></div>
+        <div class="article-card" onclick="showPage('article-fail')"><div class="article-body"><div class="article-tag fail">失敗事例</div><h4>雇われ院長で失敗した医師たちの共通点</h4><p>転職前に知るべき失敗パターン</p></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== ARTICLE: RISK ==================== -->
+<div class="page" id="page-article-risk">
+  <div class="article-hero">
+    <div class="article-hero-inner">
+      <div class="tag">リスク・法的責任</div>
+      <h1>管理医師の法的責任と<br>名義貸しの違い</h1>
+      <div class="meta">2026年4月 ｜ 監修：○○法律事務所 弁護士 ○○氏 ｜ 読了目安：10分</div>
+    </div>
+  </div>
+  <div class="article-content">
+    <div class="breadcrumb"><a onclick="showPage('home')">トップ</a> → <a>コラム</a> → 管理医師の法的責任</div>
+
+    <div class="callout">
+      <strong>この記事でわかること</strong><br>
+      ・管理医師（院長）が負う法的責任の具体的な内容<br>
+      ・名義貸しとの法的な違いと判断基準<br>
+      ・経営破綻時に院長が負うリスクの範囲<br>
+      ・契約書で確認すべき責任範囲のチェックリスト
+    </div>
+
+    <h2>1. 管理医師が負う法的責任とは</h2>
+    <p>医療法では、すべての医療機関に「管理者」の設置を義務づけています。管理者には、安全管理体制の確保義務、従業者の監督義務、行政への届出義務が課せられます。</p>
+    <p>つまり、承継院長であっても「管理者」として就任する以上、保健所や厚生局に自分の氏名で届出がなされ、医療法上の責任を負うことになります。この点は、一般の勤務医とは明確に異なるポイントです。</p>
+
+    <h2>2. 名義貸しとの決定的な違い</h2>
+    <p>名義貸しとは、管理者として届出はされているものの、実際にはその医療機関で常勤していない、あるいは診療を行っていない状態を指します。これは医療法違反であり、行政処分の対象です。</p>
+    <blockquote>承継院長は、実際にクリニックで診療を行い、管理者として実質的に医療機関を運営する正当な立場です。「名義だけ貸す」のとは根本的に異なります。</blockquote>
+
+    <h2>3. 経営破綻時のリスク</h2>
+    <p>最も多くの医師が不安に感じるのが、クリニックの経営が悪化した場合の責任です。結論から言えば、経営破綻の財務的責任は法人の開設者が負います。院長個人が借入金の連帯保証人にならない限り、個人の財産が毀損されることは基本的にありません。</p>
+    <p>ただし、医療法上の管理者としての義務（安全管理体制、従業者監督）は院長に帰属するため、医療事故や法令違反が発生した場合は、管理者としての責任を問われる可能性はあります。</p>
+
+    <h2>4. 契約書で確認すべきチェックリスト</h2>
+    <ol>
+      <li><strong>連帯保証の有無：</strong>院長個人の連帯保証を求められていないか</li>
+      <li><strong>経営判断の権限範囲：</strong>設備投資、人事権がどこまで院長にあるか</li>
+      <li><strong>退職条件：</strong>管理者変更届の提出時期と手続き</li>
+      <li><strong>競業避止義務：</strong>退職後の診療制限がないか</li>
+      <li><strong>損害賠償の範囲：</strong>医療事故時の賠償責任の分担</li>
+    </ol>
+
+    <div class="sidebar-cta">
+      <h3>契約書のリーガルチェックもサポートします</h3>
+      <p>提携弁護士による契約書レビューを無料で提供しています。</p>
+      <div class="hero-btn" onclick="showPage('home','cta')">無料相談する</div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== ARTICLE: FAIL ==================== -->
+<div class="page" id="page-article-fail">
+  <div class="article-hero">
+    <div class="article-hero-inner">
+      <div class="tag">失敗事例</div>
+      <h1>雇われ院長で失敗した<br>医師たちの共通点</h1>
+      <div class="meta">2026年4月 ｜ 読了目安：12分</div>
+    </div>
+  </div>
+  <div class="article-content">
+    <div class="breadcrumb"><a onclick="showPage('home')">トップ</a> → <a>コラム</a> → 雇われ院長の失敗事例</div>
+
+    <div class="callout">
+      <strong>この記事でわかること</strong><br>
+      ・雇われ院長で失敗する5つの典型パターン<br>
+      ・失敗した医師たちが見落としたポイント<br>
+      ・入職前に確認すべきデューデリジェンス項目<br>
+      ・「承継院長」なら回避できるリスクの構造
+    </div>
+
+    <h2>1. パターン①：聞いていた話と全然違う</h2>
+    <p>最も多い失敗パターンです。面接時に説明された患者数、スタッフ体制、設備投資計画が、入職後に大きく異なっていたケース。</p>
+    <blockquote>40代内科医のケースでは、「1日50人の患者が来る」と聞いて入職したが、実際には20人程度。年収もインセンティブ込みの数字だったため、実質的には前職より低い収入になった。</blockquote>
+    <p><strong>防ぎ方：</strong>直近12ヶ月のレセプトデータ、月次の売上推移を必ず書面で確認する。口頭の説明だけで判断しない。</p>
+
+    <h2>2. パターン②：オーナーとの方針対立</h2>
+    <p>法人オーナーと医療方針が合わず、就任後に対立が深刻化するパターン。特に、営利目的の法人や異業種から参入した企業がオーナーの場合に発生しやすい。</p>
+    <p><strong>防ぎ方：</strong>オーナーの経歴と経営方針を事前に確認。特に「実質的な経営判断は誰がしているか」を面接で直接聞く。</p>
+
+    <h2>3. パターン③：将来の譲渡を約束されたのに反故</h2>
+    <p>「3年後にクリニックを譲渡する」と口約束されていたものの、実際にはその約束が守られないケース。</p>
+    <p><strong>防ぎ方：</strong>譲渡条件は必ず契約書に明記する。口約束は法的効力がないと考えるべき。</p>
+
+    <h2>4. パターン④：自由診療クリニックの闇</h2>
+    <p>美容・脱毛・AGAなどの自由診療クリニックで、実質的に「名義貸し」のような運用を強いられるケース。営利企業がオーナーの場合に特に注意。</p>
+    <p><strong>防ぎ方：</strong>自由診療クリニックの場合は、診療方針の決定権が誰にあるかを必ず確認。「医師の判断で診療を拒否できるか」を基準にする。</p>
+
+    <h2>5. パターン⑤：退職できない</h2>
+    <p>管理者変更届の手続きが必要なため、後任が見つからない限り退職できないと言われるケース。</p>
+    <p><strong>防ぎ方：</strong>退職予告期間と管理者変更の手続きを契約書で明記する。一般的には3〜6ヶ月前の予告で退職可能。</p>
+
+    <div class="sidebar-cta">
+      <h3>失敗しない院長就任を一緒に設計しませんか？</h3>
+      <p>当サイトでは契約書チェック・オーナー面談の同席もサポートします。</p>
+      <div class="hero-btn" onclick="showPage('home','cta')">無料相談する</div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== ARTICLE: PROCESS ==================== -->
+<div class="page" id="page-article-process">
+  <div class="article-hero"><div class="article-hero-inner"><div class="tag">就任プロセス</div><h1>M&amp;A成立後、<br>院長就任までの完全ガイド</h1><div class="meta">2026年4月 ｜ 読了目安：8分</div></div></div>
+  <div class="article-content">
+    <div class="breadcrumb"><a onclick="showPage('home')">トップ</a> → <a>コラム</a> → 院長就任までの流れ</div>
+    <div class="callout"><strong>この記事でわかること</strong><br>・M&amp;A成立から院長就任までの全体スケジュール<br>・前院長からの引き継ぎで確認すべき項目<br>・保健所・厚生局への届出手続き<br>・スタッフとの信頼構築のポイント</div>
+    <h2>1. 全体スケジュール（目安）</h2>
+    <table><tbody><tr><th>フェーズ</th><th>期間</th><th>内容</th></tr><tr><td>面談・条件交渉</td><td>2〜4週間</td><td>法人との面談、条件提示、契約書ドラフト</td></tr><tr><td>クリニック見学</td><td>1〜2回</td><td>現地見学、スタッフとの顔合わせ</td></tr><tr><td>契約締結</td><td>1〜2週間</td><td>弁護士チェック→契約締結</td></tr><tr><td>引き継ぎ期間</td><td>1〜3ヶ月</td><td>前院長と並走して診療・患者引き継ぎ</td></tr><tr><td>就任届出</td><td>就任日</td><td>保健所・厚生局への管理者変更届</td></tr></tbody></table>
+    <h2>2. 前院長からの引き継ぎチェックリスト</h2>
+    <ol><li>患者カルテと診療方針の確認</li><li>スタッフの役割分担・勤務シフトの把握</li><li>取引業者（医薬品・検査・設備）の一覧と契約条件</li><li>近隣医療機関との連携関係</li><li>患者からのクレーム履歴・対応方針</li></ol>
+    <h2>3. 行政届出の手続き</h2>
+    <p>管理者変更届は保健所への届出が必要です。届出から処理完了まで通常2〜4週間程度。届出には前院長の退任届と新院長の就任届を同時に提出します。</p>
+    <div class="sidebar-cta"><h3>就任プロセスの個別相談も承ります</h3><p>スケジュール作成から届出手続きまでサポートします。</p><div class="hero-btn" onclick="showPage('home','cta')">無料相談する</div></div>
+  </div>
+</div>
+
+<!-- ==================== ARTICLE: COMPARE ==================== -->
+<div class="page" id="page-article-compare">
+  <div class="article-hero"><div class="article-hero-inner"><div class="tag">比較</div><h1>開業 vs 承継院長 vs<br>承継開業の違い</h1><div class="meta">2026年4月 ｜ 読了目安：7分</div></div></div>
+  <div class="article-content">
+    <div class="breadcrumb"><a onclick="showPage('home')">トップ</a> → <a>コラム</a> → 3つの選択肢の比較</div>
+    <div class="callout"><strong>この記事でわかること</strong><br>・新規開業・承継院長・承継開業の違いを一覧で比較<br>・それぞれに向いている医師の特徴<br>・リスクとリターンのバランス</div>
+    <h2>1. 3つの選択肢を比較</h2>
+    <table><tbody><tr><th>比較軸</th><th>新規開業</th><th>承継院長</th><th>承継開業</th></tr><tr><td>初期投資</td><td>5,000万〜2億円</td><td>0円</td><td>3,000万〜1億円</td></tr><tr><td>経営リスク</td><td>自分で全額負担</td><td>法人が負担</td><td>自分で負担（低め）</td></tr><tr><td>裁量権</td><td>100%</td><td>限定的</td><td>80〜90%</td></tr><tr><td>患者基盤</td><td>ゼロから</td><td>引き継ぎあり</td><td>引き継ぎあり</td></tr><tr><td>年収（初年度）</td><td>不安定</td><td>固定給あり</td><td>不安定（ただし患者がいる分マシ）</td></tr><tr><td>将来の出口</td><td>売却・承継</td><td>独立 or 継続</td><td>売却・承継</td></tr></tbody></table>
+    <h2>2. こんな医師には承継院長が向いている</h2>
+    <p>「いずれ開業したいが、まずは経営を学びたい」「初期投資のリスクを取りたくない」「患者がいる状態で院長をやりたい」——こうした医師には、承継院長が最もバランスの取れた選択肢です。</p>
+    <p>逆に、「最初から100%自分の理想の医院を作りたい」「経営の自由度を最優先したい」という医師には、新規開業やM&amp;A承継開業のほうが適しています。</p>
+    <div class="sidebar-cta"><h3>どの選択肢が自分に合うか、一緒に考えませんか？</h3><p>キャリアの方向性から個別にアドバイスします。</p><div class="hero-btn" onclick="showPage('home','cta')">無料相談する</div></div>
+  </div>
+</div>
+
+<!-- ==================== JOB DETAIL 1 ==================== -->
+<div class="page" id="page-job-detail-1">
+  <div class="job-detail-hero">
+    <div class="job-detail-inner">
+      <span class="job-badge active" style="margin-bottom:12px;display:inline-block">募集中</span>
+      <h1 style="font-family:var(--font-display);font-size:24px;font-weight:600;line-height:1.5;margin-bottom:8px">【内科】東京都世田谷区<br>承継クリニックの院長ポスト</h1>
+      <p style="font-size:13px;color:rgba(255,255,255,.6)">M&amp;A成立済み ｜ 前院長による3ヶ月間の引き継ぎあり</p>
+      <div class="job-stats">
+        <div class="job-stat"><div class="v">1,800〜2,200万</div><div class="l">年収</div></div>
+        <div class="job-stat"><div class="v">週4.5日</div><div class="l">勤務日数</div></div>
+        <div class="job-stat"><div class="v">なし</div><div class="l">当直・オンコール</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="job-detail-content">
+    <div class="back-link" onclick="showPage('home','jobs')">← 求人一覧に戻る</div>
+    <div class="job-section"><h3>クリニック概要</h3>
+      <table><tbody><tr><th>項目</th><th>内容</th></tr><tr><td>診療科</td><td>一般内科・生活習慣病</td></tr><tr><td>所在地</td><td>東京都世田谷区（最寄駅 徒歩3分）</td></tr><tr><td>開業年数</td><td>12年（地域に定着済み）</td></tr><tr><td>患者数</td><td>1日平均45名</td></tr><tr><td>スタッフ</td><td>看護師3名・事務2名（全員継続勤務）</td></tr><tr><td>M&amp;A成立</td><td>2026年2月（買い手法人による承継完了）</td></tr></tbody></table>
+    </div>
+    <div class="job-section"><h3>報酬・インセンティブ</h3>
+      <table><tbody><tr><th>項目</th><th>内容</th></tr><tr><td>基本年俸</td><td>1,800万円（固定給）</td></tr><tr><td>インセンティブ</td><td>月間売上連動（上限なし）</td></tr><tr><td>想定年収</td><td>2,000〜2,200万円</td></tr><tr><td>社会保険</td><td>厚生年金・健保・雇用保険完備</td></tr><tr><td>退職金</td><td>勤続3年以上で支給</td></tr></tbody></table>
+    </div>
+    <div class="job-section"><h3>責任範囲とリスク（明示事項）</h3>
+      <div class="risk-box">
+        <div class="risk-item"><strong>経営破綻リスク：</strong>法人側が全額負担。院長個人の連帯保証なし。</div>
+        <div class="risk-item"><strong>管理医師の行政責任：</strong>医療法に基づく安全管理体制確保義務・従業者監督義務あり。</div>
+        <div class="risk-item"><strong>人事権：</strong>スタッフ採用・解雇の最終決定権は法人側。院長は推薦・意見具申が可能。</div>
+        <div class="risk-item"><strong>設備投資：</strong>医療機器購入は法人決裁。年間300万円の裁量予算あり。</div>
+        <div class="risk-item"><strong>競業避止：</strong>退職後2年間・半径2km以内の同科開業制限あり。</div>
+      </div>
+    </div>
+    <div class="job-section"><h3>なぜこのクリニックが院長を募集しているか</h3>
+      <p>前院長（60代）が引退を希望し、医療法人に事業譲渡。買い手法人は首都圏で複数のクリニックを運営しており、承継後の院長候補を探しています。前院長は3ヶ月間の引き継ぎに全面協力予定。患者・スタッフとも信頼関係が構築されており、スムーズな移行が見込めます。</p>
+    </div>
+    <div class="job-section"><h3>就任までのスケジュール</h3>
+      <div class="timeline-box">
+        <p><strong>面談（2週間）</strong>→ 法人担当者との面談・条件確認</p>
+        <p><strong>見学（1〜2回）</strong>→ 現地訪問、スタッフとの顔合わせ</p>
+        <p><strong>条件交渉・契約（2週間）</strong>→ 弁護士チェック→契約締結</p>
+        <p><strong>引き継ぎ（3ヶ月）</strong>→ 前院長と並走して診療・引き継ぎ</p>
+        <p><strong>院長就任（2026年秋予定）</strong></p>
+      </div>
+    </div>
+    <div style="text-align:center;margin:40px 0">
+      <div class="hero-btn" style="font-size:16px;padding:16px 40px" onclick="showPage('home','cta')">この案件について相談する（無料）</div>
+      <div style="font-size:12px;color:var(--gray-400);margin-top:8px">※ 応募ではありません。まず詳細をお伝えします。</div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== JOB DETAIL 2 ==================== -->
+<div class="page" id="page-job-detail-2">
+  <div class="job-detail-hero"><div class="job-detail-inner"><span class="job-badge active" style="margin-bottom:12px;display:inline-block">募集中</span><h1 style="font-family:var(--font-display);font-size:24px;font-weight:600;line-height:1.5;margin-bottom:8px">【皮膚科】神奈川県横浜市<br>美容皮膚科併設クリニック</h1><p style="font-size:13px;color:rgba(255,255,255,.6)">前院長の独立開業に伴う後任募集 ｜ 保険+自費のハイブリッド型</p><div class="job-stats"><div class="job-stat"><div class="v">2,000〜2,500万</div><div class="l">年収+インセンティブ</div></div><div class="job-stat"><div class="v">週5日</div><div class="l">完全予約制</div></div><div class="job-stat"><div class="v">なし</div><div class="l">当直・オンコール</div></div></div></div></div>
+  <div class="job-detail-content">
+    <div class="back-link" onclick="showPage('home','jobs')">← 求人一覧に戻る</div>
+    <div class="job-section"><h3>クリニック概要</h3><table><tbody><tr><th>項目</th><th>内容</th></tr><tr><td>診療科</td><td>皮膚科・美容皮膚科</td></tr><tr><td>所在地</td><td>神奈川県横浜市（主要駅 徒歩5分）</td></tr><tr><td>開業年数</td><td>8年</td></tr><tr><td>患者数</td><td>1日平均35名（保険25名+自費10名）</td></tr><tr><td>スタッフ</td><td>看護師4名・事務3名・カウンセラー1名</td></tr><tr><td>設備</td><td>レーザー2台、IPL、超音波診断装置</td></tr></tbody></table></div>
+    <div class="job-section"><h3>報酬設計</h3><table><tbody><tr><th>項目</th><th>内容</th></tr><tr><td>基本年俸</td><td>2,000万円（固定給）</td></tr><tr><td>インセンティブ</td><td>自費診療売上の10%（上限なし）</td></tr><tr><td>想定年収</td><td>2,200〜2,500万円</td></tr></tbody></table></div>
+    <div class="job-section"><h3>責任範囲とリスク</h3><div class="risk-box"><div class="risk-item"><strong>経営リスク：</strong>法人負担。連帯保証なし。</div><div class="risk-item"><strong>美容施術の裁量：</strong>院長の医学的判断が最優先。法人が施術を強制することはない。</div><div class="risk-item"><strong>設備投資：</strong>年間500万円の裁量予算。新規レーザー導入も相談可能。</div></div></div>
+    <div style="text-align:center;margin:40px 0"><div class="hero-btn" style="font-size:16px;padding:16px 40px" onclick="showPage('home','cta')">この案件について相談する（無料）</div></div>
+  </div>
+</div>
+
+<!-- ==================== CASE DETAIL 1 ==================== -->
+<div class="page" id="page-case-detail-1">
+  <div class="case-detail-hero">
+    <div class="case-detail-avatar">A</div>
+    <h1 style="font-family:var(--font-display);font-size:22px;font-weight:600;line-height:1.5">40代男性・整形外科<br>大学病院勤務医 → 承継クリニック院長</h1>
+    <p style="font-size:13px;color:rgba(255,255,255,.6);margin-top:8px">開業資金を貯めながら、院長として経営を学ぶ</p>
+    <div class="case-detail-nums">
+      <div class="case-detail-num"><div class="v">1,700万</div><div class="l">前職年収</div></div>
+      <div style="color:rgba(255,255,255,.3);font-size:20px;display:flex;align-items:center">→</div>
+      <div class="case-detail-num"><div class="v">2,100万</div><div class="l">現年収</div></div>
+      <div class="case-detail-num"><div class="v">週5日</div><div class="l">勤務</div></div>
+      <div class="case-detail-num"><div class="v">なし</div><div class="l">当直</div></div>
+    </div>
+  </div>
+  <div class="article-content">
+    <div class="back-link" onclick="showPage('home','cases')">← 体験談一覧に戻る</div>
+    <h2>転職の背景</h2>
+    <p>卒後から大学病院の整形外科で15年勤務。医局人事でポストが上がるにつれ、診療以外の業務（研究指導、学会準備、委員会対応）が増え、手術に集中したい思いが強くなっていました。</p>
+    <p>漠然と「いつかは開業したい」と考えていましたが、整形外科クリニックの開業には設備投資だけで1億円超。まずはクリニック経営を体験してから判断したいと思い、承継院長という選択肢にたどり着きました。</p>
+    <h2>承継院長を選んだ理由</h2>
+    <blockquote>「ゼロから開業する前に、すでに回っているクリニックで"経営の練習"をしたかった。患者もスタッフもいる環境なら、純粋に経営の勉強に集中できると思いました」</blockquote>
+    <p>特に決め手になったのは、3年後の買取オプションが契約に含まれていた点。うまくいけば、そのままクリニックを自分の物にして独立できるという出口が見えていたことが大きかった。</p>
+    <h2>就任後のリアル</h2>
+    <p>引き継ぎ期間の3ヶ月で前院長と並走し、患者との信頼関係を引き継ぎました。スタッフは全員継続で、最初の1ヶ月は前院長が横にいてくれたので安心感がありました。</p>
+    <p>経営面では、月次のP/L（損益計算書）を法人と共有する仕組みがあり、初めて「クリニックの経営を数字で見る」経験をしました。これは大学病院では絶対に得られなかった学びです。</p>
+    <h2>これから承継院長を考える医師へ</h2>
+    <blockquote>「最初から開業にこだわる必要はないと思います。承継院長として経営を体験してから、自分に合った道を選べばいい。僕の場合は、買取オプションがあることでリスクを最小化しつつ、将来の選択肢を最大化できた。」</blockquote>
+    <div class="sidebar-cta"><h3>同じようなキャリアを考えていますか？</h3><p>個別に状況をお聞きし、最適な案件をご紹介します。</p><div class="hero-btn" onclick="showPage('home','cta')">無料相談する</div></div>
+  </div>
+</div>
+
+<!-- ==================== CASE DETAIL 2 ==================== -->
+<div class="page" id="page-case-detail-2">
+  <div class="case-detail-hero"><div class="case-detail-avatar" style="background:var(--gold)">B</div><h1 style="font-family:var(--font-display);font-size:22px;font-weight:600;line-height:1.5">30代女性・産婦人科<br>総合病院医長 → 承継クリニック院長</h1><p style="font-size:13px;color:rgba(255,255,255,.6);margin-top:8px">子育てと開業準備を両立する選択</p><div class="case-detail-nums"><div class="case-detail-num"><div class="v">1,200万</div><div class="l">前職年収</div></div><div style="color:rgba(255,255,255,.3);font-size:20px;display:flex;align-items:center">→</div><div class="case-detail-num"><div class="v">1,900万</div><div class="l">現年収</div></div><div class="case-detail-num"><div class="v">週4日</div><div class="l">勤務</div></div></div></div>
+  <div class="article-content">
+    <div class="back-link" onclick="showPage('home','cases')">← 体験談一覧に戻る</div>
+    <h2>転職の背景</h2><p>3次救急を担う医療センターで医長を務めていました。未就学児2人の子育てのため週3日勤務でしたが、当直や緊急呼び出しがある環境に限界を感じていました。</p><p>将来的には分娩と産後ケアができるクリニックを開業したいと考えていたため、まずは経営を学ぶステップとして承継院長を検討しました。</p>
+    <h2>決め手になったこと</h2><blockquote>「開業意向を正直に伝えたのに、むしろ歓迎してくれた法人に出会えたのが大きかった。"意識の高い医師を求めている"と言ってもらえて、自分の将来プランを否定されない環境がありがたかった」</blockquote>
+    <h2>就任後の変化</h2><p>当直なし・週4日勤務で、子育てとの両立が格段に楽になりました。クリニック経営の実務——スタッフ管理、患者数の把握、業者との交渉——を毎日経験できるのは、将来の開業に向けた貴重な準備期間です。</p>
+    <div class="sidebar-cta"><h3>子育て中のキャリア設計、一緒に考えませんか？</h3><div class="hero-btn" onclick="showPage('home','cta')">無料相談する</div></div>
+  </div>
+</div>
+
+<!-- ==================== CASE DETAIL 3 ==================== -->
+<div class="page" id="page-case-detail-3">
+  <div class="case-detail-hero"><div class="case-detail-avatar" style="background:var(--navy-soft)">C</div><h1 style="font-family:var(--font-display);font-size:22px;font-weight:600;line-height:1.5">40代男性・呼吸器内科<br>一度失敗した雇われ院長、<br>承継院長で再スタート</h1><p style="font-size:13px;color:rgba(255,255,255,.6);margin-top:8px">契約書の重要性を身をもって学んだ</p><div class="case-detail-nums"><div class="case-detail-num"><div class="v">1,800万</div><div class="l">前職年収</div></div><div style="color:rgba(255,255,255,.3);font-size:20px;display:flex;align-items:center">→</div><div class="case-detail-num"><div class="v">2,000万</div><div class="l">現年収</div></div></div></div>
+  <div class="article-content">
+    <div class="back-link" onclick="showPage('home','cases')">← 体験談一覧に戻る</div>
+    <h2>最初の雇われ院長での失敗</h2><p>以前、ある医療法人で雇われ院長として勤務していましたが、法人オーナーが代わり、新オーナーの経営方針と医療方針が完全に対立。最終的には「新しい院長を連れてくるから辞めてくれ」と言われ、退職を余儀なくされました。</p>
+    <blockquote>「契約書を細かく確認していなかった自分が悪い。退職条件も曖昧で、引き継ぎもないまま去ることになった。正直、"二度と雇われ院長はやらない"と思っていました」</blockquote>
+    <h2>承継院長との出会い</h2><p>転職活動中に当サイトを見つけ、「契約書で責任範囲を明確にする」「弁護士チェックを標準化」というアプローチに共感。今回は契約内容を徹底的に確認した上で就任を決めました。</p>
+    <h2>今回の違い</h2><p>最大の違いは透明性です。経営破綻時の責任分担、人事権の範囲、退職条件、競業避止——すべて契約書に明記。前回のような「聞いてた話と違う」がない。安心して診療に集中できています。</p>
+    <div class="sidebar-cta"><h3>過去に雇われ院長で苦い経験がある方へ</h3><p>今度こそ安心できる環境を一緒に探しましょう。</p><div class="hero-btn" onclick="showPage('home','cta')">無料相談する</div></div>
+  </div>
+</div>
+
+<!-- ==================== CASE DETAIL 4 ==================== -->
+<div class="page" id="page-case-detail-4">
+  <div class="case-detail-hero"><div class="case-detail-avatar" style="background:var(--teal)">D</div><h1 style="font-family:var(--font-display);font-size:22px;font-weight:600;line-height:1.5">30代男性・耳鼻咽喉科<br>大学病院 → 承継耳鼻科クリニック院長</h1><p style="font-size:13px;color:rgba(255,255,255,.6);margin-top:8px">臨床に集中したい、その一心で</p><div class="case-detail-nums"><div class="case-detail-num"><div class="v">1,200万</div><div class="l">前職年収</div></div><div style="color:rgba(255,255,255,.3);font-size:20px;display:flex;align-items:center">→</div><div class="case-detail-num"><div class="v">1,600万</div><div class="l">現年収</div></div><div class="case-detail-num"><div class="v">週3.5日</div><div class="l">勤務</div></div></div></div>
+  <div class="article-content">
+    <div class="back-link" onclick="showPage('home','cases')">← 体験談一覧に戻る</div>
+    <h2>転職の背景</h2><p>大学病院で卒後から勤務し、役職が上がるにつれて診療以外の業務——教授会の準備、研究指導、委員会出席——が増加。本来やりたかった臨床に割ける時間がどんどん減っていました。</p>
+    <h2>承継院長を選んだ理由</h2><blockquote>「クリニックで外来に集中したかった。現院長が別地域で開業するため後任を探しているという案件で、引き継ぎ期間中に患者さんとの関係を築けたのがよかった」</blockquote>
+    <h2>就任後の生活</h2><p>週3.5日勤務で、残りの時間は家族と過ごしたり、以前はできなかった学会発表の準備に充てています。年収も大学時代より上がり、ワークライフバランスが大幅に改善しました。</p>
+    <div class="sidebar-cta"><h3>臨床に集中できる環境を探していますか？</h3><div class="hero-btn" onclick="showPage('home','cta')">無料相談する</div></div>
+  </div>
+</div>
+
+<!-- ==================== ARTICLES LIST ==================== -->
+<div class="page active" id="page-articles-list">
+
+  <div class="article-hero">
+    <div class="article-hero-inner" style="text-align:center;max-width:var(--max-w)">
+      <div class="tag">COLUMN</div>
+      <h1 style="font-size:28px">コラム一覧</h1>
+      <p style="font-size:14px;color:rgba(255,255,255,.6);margin-top:8px">年収、リスク、失敗事例、就任プロセスまで — 承継院長に必要な情報を正直に解説します。</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-inner">
+
+      <!-- FILTER TABS -->
+      <div style="display:flex;gap:8px;margin-bottom:32px;flex-wrap:wrap" id="filter-tabs">
+        <button class="filter-btn active" onclick="filterArticles('all',this)">すべて</button>
+        <button class="filter-btn" onclick="filterArticles('salary',this)">年収・報酬</button>
+        <button class="filter-btn" onclick="filterArticles('risk',this)">リスク・法的責任</button>
+        <button class="filter-btn" onclick="filterArticles('fail',this)">失敗事例</button>
+        <button class="filter-btn" onclick="filterArticles('process',this)">就任プロセス</button>
+        <button class="filter-btn" onclick="filterArticles('compare',this)">比較・基礎知識</button>
+        <button class="filter-btn" onclick="filterArticles('voice',this)">体験談</button>
+        <button class="filter-btn" onclick="filterArticles('buyer',this)">買い手インタビュー</button>
+      </div>
+
+      <!-- ARTICLE LIST -->
+      <div class="articles-list-grid" id="articles-list-grid">
+
+        <div class="al-card" data-cat="salary" onclick="showPage('article-salary')">
+          <div class="al-thumb t1">¥</div>
+          <div class="al-body">
+            <div class="al-tag salary">年収・報酬</div>
+            <h3>承継院長の年収相場 — M&amp;A承継クリニック編</h3>
+            <p>病院長2,633万〜法人3,021万。令和6年統計データをもとに、承継クリニック特有の報酬設計（固定給＋インセンティブ）を徹底解説。年収交渉で確認すべき5つのポイントも。</p>
+            <div class="al-meta"><span>2026.04</span><span>読了 8分</span><span>監修：○○税理士法人</span></div>
+          </div>
+        </div>
+
+        <div class="al-card" data-cat="risk" onclick="showPage('article-risk')">
+          <div class="al-thumb t2">⚖</div>
+          <div class="al-body">
+            <div class="al-tag risk">リスク・法的責任</div>
+            <h3>管理医師の法的責任と名義貸しの違い</h3>
+            <p>管理医師が負う安全管理体制確保義務・従業者監督義務とは。名義貸しとの法的な違い、経営破綻時に院長が負うリスクの範囲、契約書チェックリストを弁護士監修で解説。</p>
+            <div class="al-meta"><span>2026.04</span><span>読了 10分</span><span>監修：○○法律事務所</span></div>
+          </div>
+        </div>
+
+        <div class="al-card" data-cat="fail" onclick="showPage('article-fail')">
+          <div class="al-thumb t2">!</div>
+          <div class="al-body">
+            <div class="al-tag fail">失敗事例</div>
+            <h3>雇われ院長で失敗した医師たちの共通点</h3>
+            <p>「聞いていた話と全然違う」「オーナーとの方針対立」「譲渡を約束されたのに反故」…実際の失敗パターン5つと、それぞれの防ぎ方を具体的に解説。</p>
+            <div class="al-meta"><span>2026.04</span><span>読了 12分</span></div>
+          </div>
+        </div>
+
+        <div class="al-card" data-cat="process" onclick="showPage('article-process')">
+          <div class="al-thumb t4">→</div>
+          <div class="al-body">
+            <div class="al-tag process">就任プロセス</div>
+            <h3>M&amp;A成立後、院長就任までの完全ガイド</h3>
+            <p>面談から引き継ぎ、行政届出まで。全体スケジュール（約3〜6ヶ月）と、前院長から引き継ぐべき項目のチェックリストを網羅。</p>
+            <div class="al-meta"><span>2026.04</span><span>読了 8分</span></div>
+          </div>
+        </div>
+
+        <div class="al-card" data-cat="compare" onclick="showPage('article-compare')">
+          <div class="al-thumb t3">⇄</div>
+          <div class="al-body">
+            <div class="al-tag compare">比較</div>
+            <h3>開業 vs 承継院長 vs 承継開業の違い</h3>
+            <p>初期投資・経営リスク・裁量権・患者基盤・年収安定性・将来の出口。6つの軸で3つの選択肢を比較し、どんな医師にどの道が向いているかを整理。</p>
+            <div class="al-meta"><span>2026.04</span><span>読了 7分</span></div>
+          </div>
+        </div>
+
+        <div class="al-card" data-cat="compare">
+          <div class="al-thumb t3">Q</div>
+          <div class="al-body">
+            <div class="al-tag compare">基礎知識</div>
+            <h3>承継院長とは？ — 従来の雇われ院長との違い</h3>
+            <p>M&amp;A承継という新しい文脈で生まれた「承継院長」。一般的な雇われ院長・分院長との違い、管理医師の法的位置づけ、キャリアとしてのポジショニングを解説。</p>
+            <div class="al-meta"><span>2026.04</span><span>読了 6分</span></div>
+          </div>
+        </div>
+
+        <div class="al-card" data-cat="salary">
+          <div class="al-thumb t1">📊</div>
+          <div class="al-body">
+            <div class="al-tag salary">年収・報酬</div>
+            <h3>インセンティブ設計の裏側 — 達成不可能な条件に注意</h3>
+            <p>「年収2,500万円可能」の裏にある算定基準とは。インセンティブの種類（売上連動・患者数連動・利益連動）と、契約前に確認すべき実績データの見方。</p>
+            <div class="al-meta"><span>2026.03</span><span>読了 7分</span></div>
+          </div>
+        </div>
+
+        <div class="al-card" data-cat="risk">
+          <div class="al-thumb t2">🔒</div>
+          <div class="al-body">
+            <div class="al-tag risk">リスク・法的責任</div>
+            <h3>競業避止義務の落とし穴 — 退職後に開業できない？</h3>
+            <p>承継院長の契約に含まれがちな競業避止条項。その法的効力の実態と、交渉で緩和する方法。判例から見る合理的な制限範囲とは。</p>
+            <div class="al-meta"><span>2026.03</span><span>読了 9分</span></div>
+          </div>
+        </div>
+
+        <div class="al-card" data-cat="voice" onclick="showPage('case-detail-1')">
+          <div class="al-thumb" style="background:linear-gradient(135deg,#EAF3DE,var(--cream))">A</div>
+          <div class="al-body">
+            <div class="al-tag" style="color:#6C3483">体験談</div>
+            <h3>【体験談】40代整形外科医「買取オプション付きで、リスクを最小化しつつ将来の選択肢を最大化できた」</h3>
+            <p>大学病院勤務医 → 承継クリニック院長。年収1,700万→2,100万。開業資金を貯めながら経営を学ぶという戦略。</p>
+            <div class="al-meta"><span>2026.04</span><span>読了 5分</span></div>
+          </div>
+        </div>
+
+        <div class="al-card" data-cat="voice" onclick="showPage('case-detail-2')">
+          <div class="al-thumb" style="background:linear-gradient(135deg,#FDF6E3,var(--cream))">B</div>
+          <div class="al-body">
+            <div class="al-tag" style="color:#6C3483">体験談</div>
+            <h3>【体験談】30代産婦人科医「開業意向を正直に伝えても、むしろ歓迎された」</h3>
+            <p>総合病院医長 → 承継クリニック院長。年収1,200万→1,900万。子育てと開業準備を両立する選択。</p>
+            <div class="al-meta"><span>2026.04</span><span>読了 5分</span></div>
+          </div>
+        </div>
+
+        <div class="al-card" data-cat="voice" onclick="showPage('case-detail-3')">
+          <div class="al-thumb" style="background:linear-gradient(135deg,var(--blue-bg),var(--cream))">C</div>
+          <div class="al-body">
+            <div class="al-tag" style="color:#6C3483">体験談</div>
+            <h3>【体験談】40代呼吸器内科医「一度失敗した雇われ院長、承継院長で再スタートできた」</h3>
+            <p>法人オーナーとの方針対立で退職 → 契約書で責任範囲を明確にした再挑戦。年収1,800万→2,000万。</p>
+            <div class="al-meta"><span>2026.03</span><span>読了 6分</span></div>
+          </div>
+        </div>
+
+        <div class="al-card" data-cat="voice" onclick="showPage('case-detail-4')">
+          <div class="al-thumb" style="background:linear-gradient(135deg,var(--teal-bg),var(--cream))">D</div>
+          <div class="al-body">
+            <div class="al-tag" style="color:#6C3483">体験談</div>
+            <h3>【体験談】30代耳鼻咽喉科医「臨床に集中したい、その一心で大学を飛び出した」</h3>
+            <p>大学病院 → 承継耳鼻科クリニック院長。年収1,200万→1,600万。週3.5日勤務でワークライフバランスも改善。</p>
+            <div class="al-meta"><span>2026.03</span><span>読了 5分</span></div>
+          </div>
+        </div>
+
+        <div class="al-card" data-cat="buyer" onclick="showPage('buyer-interview-1')">
+          <div class="al-thumb" style="background:linear-gradient(135deg,var(--gold-bg),#FFF8EC)">🏥</div>
+          <div class="al-body">
+            <div class="al-tag" style="color:var(--gold)">買い手インタビュー</div>
+            <h3>【買い手法人の声】「院長付きM&amp;Aは、成約率が2倍になる」— 首都圏で5院を展開する医療法人の本音</h3>
+            <p>なぜ買い手法人は「院長付き」の承継案件を求めるのか。売り手への提案力、患者離れの防止、金融機関の評価——3つの理由を法人代表が語る。</p>
+            <div class="al-meta"><span>2026.04</span><span>読了 8分</span></div>
+          </div>
+        </div>
+
+        <div class="al-card" data-cat="buyer" onclick="showPage('buyer-interview-2')">
+          <div class="al-thumb" style="background:linear-gradient(135deg,var(--gold-bg),#FFF8EC)">💼</div>
+          <div class="al-body">
+            <div class="al-tag" style="color:var(--gold)">買い手インタビュー</div>
+            <h3>【買い手法人の声】「承継院長に求めるのは、経営手腕よりも"患者に寄り添える人柄"」— 地方で承継3件を成功させた法人</h3>
+            <p>院長選びで法人が重視する採用基準、面接で見ているポイント、報酬設計の考え方。買い手の視点から承継院長の実態を語る。</p>
+            <div class="al-meta"><span>2026.03</span><span>読了 7分</span></div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <h2>記事を読んで気になったら、<br>まずは無料登録から。</h2>
+    <p>承継院長の案件が出た際に、優先的にご連絡します。</p>
+    <div class="cta-form">
+      <input type="text" class="cta-input" placeholder="お名前">
+      <input type="text" class="cta-input" placeholder="診療科">
+      <input type="email" class="cta-input" placeholder="メールアドレス">
+      <button class="cta-submit">無料登録する</button>
+    </div>
+  </section>
+
+</div>
+
+<!-- ==================== BUYER INTERVIEW 1 ==================== -->
+<div class="page" id="page-buyer-interview-1">
+  <div class="article-hero" style="background:linear-gradient(135deg,var(--navy) 60%,var(--navy-soft))">
+    <div class="article-hero-inner">
+      <div class="tag" style="color:var(--gold-light)">買い手インタビュー</div>
+      <h1>「院長付きM&amp;Aは、<br>成約率が2倍になる」</h1>
+      <p style="font-size:15px;color:rgba(255,255,255,.65);margin-top:8px">首都圏で5院を展開する医療法人の代表が語る、承継院長を求める理由</p>
+      <div class="meta">2026年4月 ｜ 読了目安：8分</div>
+    </div>
+  </div>
+  <div class="article-content">
+    <div class="breadcrumb"><a onclick="showPage('home')">トップ</a> → <a onclick="showPage('articles-list')">コラム一覧</a> → 買い手インタビュー①</div>
+
+    <div class="callout">
+      <strong>この記事でわかること</strong><br>
+      ・買い手法人がM&amp;Aで最も苦労するポイント<br>
+      ・「院長付き案件」が買い手にとってなぜ魅力的なのか<br>
+      ・承継院長に求めるスキル・人物像<br>
+      ・報酬設計の考え方と買取オプションの本音
+    </div>
+
+    <h2>プロフィール</h2>
+    <div style="display:flex;gap:16px;align-items:center;margin-bottom:24px;padding:20px;background:var(--cream);border-radius:var(--radius-lg)">
+      <div style="width:56px;height:56px;border-radius:50%;background:var(--navy);color:var(--white);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:20px;font-weight:600;flex-shrink:0">T</div>
+      <div>
+        <div style="font-size:15px;font-weight:600;color:var(--navy)">T氏（50代）</div>
+        <div style="font-size:13px;color:var(--gray-500)">医療法人○○会 代表理事。首都圏で内科・皮膚科・整形外科の5院を運営。過去3年間で4件のM&amp;A承継を実施。</div>
+      </div>
+    </div>
+
+    <h2>M&amp;Aで買い手が最も苦労すること</h2>
+    <p>——クリニックのM&amp;Aで、買い手として最も大変なことは何ですか？</p>
+    <blockquote>「院長の確保です。これに尽きます。クリニックを買収すること自体はお金の問題ですが、買った後に誰が院長として座るかが決まらなければ、そもそもM&amp;Aの意思決定ができない。金融機関への事業計画書にも"院長候補"の記載が必要ですから」</blockquote>
+
+    <p>——院長が見つからないケースは多いのですか？</p>
+    <blockquote>「非常に多い。我々の経験では、院長候補が確保できずに見送ったM&amp;A案件が、成立した案件と同じくらいあります。良い案件が出ても、院長がいなければ手が出せない。これが買い手としての最大のフラストレーションです」</blockquote>
+
+    <h2>「院長付きM&amp;A」が成約率を2倍にする理由</h2>
+    <p>——「院長付き」で案件を提案されると、何が変わりますか？</p>
+    <blockquote>「意思決定のスピードが全く違います。院長候補が決まっていれば、事業計画の精度が上がり、金融機関との交渉もスムーズになる。売り手側も"この人が引き継いでくれるなら"と安心して譲渡を決断できる。結果として、院長付き案件の成約率は、そうでない案件の約2倍です」</blockquote>
+
+    <p>——患者の離脱防止にもつながりますか？</p>
+    <blockquote>「そこが最も大きい。M&amp;A後に最も怖いのは、院長交代による患者離れです。前院長から新院長への引き継ぎがスムーズに行われれば、患者の8〜9割は残ってくれる。逆に、引き継ぎなしで突然院長が変わると、3〜4割は他院に流れます。これは売上に直結する」</blockquote>
+
+    <h2>承継院長に求める人物像</h2>
+    <p>——承継院長を採用する際、何を重視していますか？</p>
+    <blockquote>「正直に言えば、経営手腕よりも人柄です。承継クリニックの患者さんは"前の先生に診てもらっていた"という信頼がベースにあります。新しい院長に求めるのは、その信頼を壊さない誠実さ、患者さんの話をちゃんと聞ける姿勢です。経営の数字は法人がサポートできますが、患者さんとの信頼関係は院長にしか作れない」</blockquote>
+
+    <p>——開業意向がある医師はどう評価しますか？</p>
+    <blockquote>「むしろ歓迎です。将来の開業を見据えている医師は、経営への意識が高い。"3〜5年後に独立したい"と正直に言ってくれる方のほうが、信頼できます。我々としても、その間に次の院長候補を育てればいい。Win-Winの関係です」</blockquote>
+
+    <h2>報酬設計の考え方</h2>
+    <p>——買い手法人として、承継院長の報酬はどう設計していますか？</p>
+    <blockquote>「固定給で安定した生活基盤を保証した上で、クリニックの成長に応じたインセンティブを設けています。基本年俸は1,500〜1,800万円で、インセンティブ込みで2,000〜2,500万円が目安。重要なのは、インセンティブの算定基準を透明にすること。ここを曖昧にすると信頼関係が壊れる」</blockquote>
+
+    <p>——買取オプションについてはどうですか？</p>
+    <blockquote>「ケースバイケースですが、我々は積極的に提案しています。院長にオーナーシップを持ってもらうことで、クリニックへのコミットメントが格段に上がる。買取価格は就任時の評価額をベースに、業績に応じた調整を加える形が多い」</blockquote>
+
+    <h2>承継院長を検討している医師へのメッセージ</h2>
+    <blockquote>「"雇われ院長"という言葉のネガティブなイメージに引っ張られすぎないでほしい。承継院長は、患者・スタッフ・買い手法人の三者にとって不可欠な存在です。あなたが座ることで、一つのクリニックが存続し、地域の医療が守られる。それはとても意義のある仕事だと思います」</blockquote>
+
+    <div class="sidebar-cta">
+      <h3>買い手法人が求める承継院長像、あなたに合う案件を一緒に探しませんか？</h3>
+      <p>法人側のニーズを踏まえた上で、最適な案件をご紹介します。</p>
+      <div class="hero-btn" onclick="showPage('home','cta')">無料相談する</div>
+    </div>
+
+    <div style="border-top:1px solid var(--gray-100);padding-top:24px;margin-top:8px">
+      <div class="section-label">RELATED</div>
+      <div class="section-title" style="font-size:18px">関連記事</div>
+      <div class="related-grid">
+        <div class="article-card" onclick="showPage('buyer-interview-2')"><div class="article-body"><div class="article-tag" style="color:var(--gold)">買い手インタビュー</div><h4>「承継院長に求めるのは経営手腕よりも人柄」</h4><p>地方で承継3件を成功させた法人の視点</p></div></div>
+        <div class="article-card" onclick="showPage('article-salary')"><div class="article-body"><div class="article-tag salary">年収・報酬</div><h4>承継院長の年収相場 — M&amp;A承継クリニック編</h4><p>統計データで見る報酬の実態</p></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== BUYER INTERVIEW 2 ==================== -->
+<div class="page" id="page-buyer-interview-2">
+  <div class="article-hero" style="background:linear-gradient(135deg,var(--navy) 60%,var(--navy-soft))">
+    <div class="article-hero-inner">
+      <div class="tag" style="color:var(--gold-light)">買い手インタビュー</div>
+      <h1>「承継院長に求めるのは、<br>経営手腕よりも"人柄"」</h1>
+      <p style="font-size:15px;color:rgba(255,255,255,.65);margin-top:8px">地方で承継3件を成功させた医療法人が語る、院長選びの基準</p>
+      <div class="meta">2026年3月 ｜ 読了目安：7分</div>
+    </div>
+  </div>
+  <div class="article-content">
+    <div class="breadcrumb"><a onclick="showPage('home')">トップ</a> → <a onclick="showPage('articles-list')">コラム一覧</a> → 買い手インタビュー②</div>
+
+    <div class="callout">
+      <strong>この記事でわかること</strong><br>
+      ・地方の承継M&amp;Aが抱える特有の課題<br>
+      ・買い手法人が院長面接で見ているポイント<br>
+      ・「うまくいった承継」と「失敗した承継」の違い<br>
+      ・地方クリニックならではの報酬・働き方の魅力
+    </div>
+
+    <h2>プロフィール</h2>
+    <div style="display:flex;gap:16px;align-items:center;margin-bottom:24px;padding:20px;background:var(--cream);border-radius:var(--radius-lg)">
+      <div style="width:56px;height:56px;border-radius:50%;background:var(--gold);color:var(--white);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:20px;font-weight:600;flex-shrink:0">S</div>
+      <div>
+        <div style="font-size:15px;font-weight:600;color:var(--navy)">S氏（40代）</div>
+        <div style="font-size:13px;color:var(--gray-500)">医療法人○○会 理事長。東北地方で内科・小児科を中心に3院を運営。いずれもM&amp;Aによる承継で取得。地域医療の継続を経営理念に掲げる。</div>
+      </div>
+    </div>
+
+    <h2>地方の承継M&amp;Aが抱える課題</h2>
+    <p>——地方でのクリニックM&amp;Aは、都市部と何が違いますか？</p>
+    <blockquote>「院長候補を見つけるハードルが圧倒的に高い。都市部なら転職サイトに出せば応募がありますが、地方はそうはいかない。しかも地方のクリニックほど、前院長が地域に根ざした信頼を築いている。だからこそ"この人なら任せられる"という院長を見つけることが、承継の成否を分ける」</blockquote>
+
+    <h2>院長面接で見ているポイント</h2>
+    <p>——面接では何を見ていますか？</p>
+    <blockquote>「3つあります。1つ目は患者への姿勢。面接で"売上"や"効率化"の話ばかりする医師は合わない。地方の患者さんは"先生に話を聞いてもらえた"ということ自体に価値を感じている。2つ目はスタッフへの敬意。承継クリニックのスタッフは前院長のやり方に慣れているので、いきなり変えようとする人は失敗する。3つ目は長期的な視点。短期間で辞められるのが一番困る」</blockquote>
+
+    <h2>うまくいった承継・失敗した承継</h2>
+    <p>——成功と失敗、それぞれの共通点は？</p>
+    <blockquote>「うまくいったケースは、例外なく引き継ぎ期間を十分に取っている。前院長が2〜3ヶ月並走して、患者さんに"新しい先生です"と紹介する。この地味なプロセスが全てです。逆に失敗したケースは、引き継ぎなしでいきなり院長交代したもの。患者数が半年で4割減った」</blockquote>
+
+    <p>——前院長との関係構築のコツは？</p>
+    <blockquote>「前院長をリスペクトすること。引退するとはいえ、何十年もそのクリニックを支えてきた人です。"先生のクリニックを引き継ぐ"という敬意を態度で示せる院長は、前院長からもスタッフからも患者からも受け入れられる」</blockquote>
+
+    <h2>地方ならではの報酬・働き方</h2>
+    <p>——地方クリニックの承継院長の報酬水準はどうですか？</p>
+    <blockquote>「都市部と遜色ない、むしろ高めのケースが多い。地方は医師不足なので、報酬で魅力を出さなければ人が来ない。基本年俸1,800〜2,200万円程度で、住宅手当や引越し費用の負担も一般的です。加えて、通勤時間が短い、当直がない、週4.5日勤務——QOLは確実に上がります」</blockquote>
+
+    <h2>承継院長を検討している医師へ</h2>
+    <blockquote>「地方のクリニックを引き継ぐということは、その地域の医療を守るということ。大げさに聞こえるかもしれませんが、地方ではクリニックが閉じると、次に一番近い医療機関が車で30分先になる。あなたが院長として座ることで、何千人という患者さんの医療アクセスが守られる。やりがいという意味では、これ以上のポジションはないと思います」</blockquote>
+
+    <div class="sidebar-cta">
+      <h3>地方の承継案件にも興味がありますか？</h3>
+      <p>地方ならではの好条件案件を優先的にご案内します。</p>
+      <div class="hero-btn" onclick="showPage('home','cta')">無料相談する</div>
+    </div>
+
+    <div style="border-top:1px solid var(--gray-100);padding-top:24px;margin-top:8px">
+      <div class="section-label">RELATED</div>
+      <div class="section-title" style="font-size:18px">関連記事</div>
+      <div class="related-grid">
+        <div class="article-card" onclick="showPage('buyer-interview-1')"><div class="article-body"><div class="article-tag" style="color:var(--gold)">買い手インタビュー</div><h4>「院長付きM&amp;Aは、成約率が2倍になる」</h4><p>首都圏5院展開の法人代表の本音</p></div></div>
+        <div class="article-card" onclick="showPage('article-fail')"><div class="article-body"><div class="article-tag fail">失敗事例</div><h4>雇われ院長で失敗した医師たちの共通点</h4><p>転職前に知るべき失敗パターン</p></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="footer-links">
+    <a onclick="showPage('home')">トップ</a>
+    <a>プライバシーポリシー</a>
+    <a>運営者情報</a>
+    <a>お問い合わせ</a>
+  </div>
+  <p>承継院長ナビ © 2026 — M&amp;A承継クリニック専門の院長候補マッチングメディア</p>
+</footer>
+
+<script>
+function filterArticles(cat, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.al-card').forEach(card => {
+    if (cat === 'all' || card.dataset.cat === cat) {
+      card.classList.remove('hidden');
+    } else {
+      card.classList.add('hidden');
+    }
+  });
+}
+
+function showPage(pageId, sectionId) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  const target = document.getElementById('page-' + pageId);
+  if (target) target.classList.add('active');
+  
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+  const navLink = document.getElementById('nav-' + pageId);
+  if (navLink) navLink.classList.add('active');
+  
+  window.scrollTo(0, 0);
+  
+  if (sectionId) {
+    setTimeout(() => {
+      const sec = document.getElementById('section-' + sectionId);
+      if (sec) sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 50);
+  }
+}
+</script>
+
+
+</body></html>
