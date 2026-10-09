@@ -258,9 +258,9 @@ img{max-width:100%}
   <div class="nav-inner">
     <div class="nav-logo" onclick="showPage('home')">承継<span class="accent">院長</span>ナビ</div>
     <div class="nav-links">
-      <a onclick="showPage('home')" id="nav-home" class="">トップ</a>
+      <a onclick="showPage('home')" id="nav-home" class="active">トップ</a>
       <a onclick="showPage('home','jobs')">求人一覧</a>
-      <a onclick="showPage('articles-list')" id="nav-articles-list" class="active">コラム一覧</a>
+      <a onclick="showPage('articles-list')" id="nav-articles-list">コラム一覧</a>
       <a onclick="showPage('home','cases')">体験談</a>
       <a class="nav-cta" onclick="showPage('home','cta')">無料登録</a>
     </div>
@@ -268,7 +268,7 @@ img{max-width:100%}
 </nav>
 
 <!-- ==================== HOME ==================== -->
-<div class="page" id="page-home">
+<div class="page active" id="page-home">
 
   <!-- HERO -->
   <section class="hero">
@@ -843,7 +843,7 @@ img{max-width:100%}
 </div>
 
 <!-- ==================== ARTICLES LIST ==================== -->
-<div class="page active" id="page-articles-list">
+<div class="page" id="page-articles-list">
 
   <div class="article-hero">
     <div class="article-hero-inner" style="text-align:center;max-width:var(--max-w)">
